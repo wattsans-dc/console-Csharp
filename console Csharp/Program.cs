@@ -85,8 +85,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        Employee employee = new Employee();
-        employee.PrintMonthlySalary();
+        Employee employee1 = new Employee();
+        employee1.PrintMonthlySalary();
+
+        Console.WriteLine();
+
+        Employee employee2 = new Employee();
+        employee2.PrintMonthlySalary();
 
         Console.ReadLine();
     }
