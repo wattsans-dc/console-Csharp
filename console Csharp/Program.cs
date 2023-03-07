@@ -1,5 +1,7 @@
 ﻿using System;
 
+
+
 class Employee
 {
     public int Id { get; set; }
@@ -8,6 +10,7 @@ class Employee
     public int Age { get; set; }
     public double Salary { get; set; }
     public double Tax { get; set; }
+
 
     public Employee()
     {
@@ -28,6 +31,47 @@ class Employee
 
         Console.Write("Entrez le montant en pourcentage de vos taxes annuelles : ");
         this.Tax = double.Parse(Console.ReadLine());
+
+    }
+
+    public void ChooseOption()
+    {
+        Console.WriteLine("Choisissez une option : ");
+        Console.WriteLine("1. Afficher votre salaire mensuel");
+        Console.WriteLine("2. Calculer vos intérêts composés");
+
+        int choice = int.Parse(Console.ReadLine());
+
+        if (choice == 1)
+        {
+            PrintMonthlySalary();
+        }
+        else if (choice == 2)
+        {
+            CalculateCompoundInterest();
+        }
+    }
+
+    public void CalculateCompoundInterest()
+    {
+        Console.Write("Entrez le capital investi : ");
+        double capital = double.Parse(Console.ReadLine());
+
+        Console.Write("Entrez le taux d'intérêt annuel : ");
+        double rate = double.Parse(Console.ReadLine());
+
+        Console.Write("Entrez le nombre d'années : ");
+        int years = int.Parse(Console.ReadLine());
+
+        double balance = capital;
+
+        Console.WriteLine($"Année 1 : {balance.ToString("N2")} €");
+
+        for (int i = 2; i <= years; i++)
+        {
+            balance *= 1 + rate / 100;
+            Console.WriteLine($"Année {i} : {balance.ToString("N2")} €");
+        }
     }
 
     public void PrintMonthlySalary()
@@ -86,8 +130,9 @@ class Program
     static void Main(string[] args)
     {
         Employee employee = new Employee();
-        employee.PrintMonthlySalary();
+        employee.ChooseOption();
 
         Console.ReadLine();
     }
+
 }
