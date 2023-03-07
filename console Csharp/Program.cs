@@ -16,7 +16,25 @@ class Program
             salairesMensuels[i] = salaireMensuelBase;
         }
 
-        double salaireDecembre = salaireMensuelBase + (salaireAnnuel * 0.1) / 12;
+        double primeNoel = 0;
+
+        try
+        {
+            Console.Write("Veuillez saisir le montant en pourcentage de la prime de Noël : ");
+            string pourcentagePrimeNoel = Console.ReadLine();
+
+            primeNoel = double.Parse(pourcentagePrimeNoel) / 100 * salaireAnnuel;
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Erreur : vous devez entrer un nombre entier pour le pourcentage de la prime de Noël.");
+        }
+        catch (DivideByZeroException)
+        {
+            Console.WriteLine("Erreur : le pourcentage de la prime de Noël ne peut pas être égal à 0.");
+        }
+
+        double salaireDecembre = salaireMensuelBase + (salaireAnnuel * 0.1) / 12 + primeNoel;
         salairesMensuels[11] = salaireDecembre;
 
         string[] moisDeLannee = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
@@ -36,3 +54,4 @@ class Program
         Console.ReadLine();
     }
 }
+
